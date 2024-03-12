@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6$hrq5p!@kwb1r(%rakk=5_=&y+v=ag07j!%my+*8gi1%_iyul
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['raqib.com','localhost','127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
+    'django_extensions',
     
 ]
 
@@ -135,4 +137,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 AUTHENTICATION_BACKENDS = [
  'django.contrib.auth.backends.ModelBackend',
  'account.authentication.EmailAuthBackend',
+ 'social_core.backends.google.GoogleOAuth2',
 ]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY  = '1051546485446-8ddrbf7h0kf6jq8spum5gn380cvi49g9.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+#SOCIAL_AUTH_GOOGLE_SCOPE = ['telliala@gmail.com']
