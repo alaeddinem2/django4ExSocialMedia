@@ -20,8 +20,6 @@ def image_create(request):
             cd = form.cleaned_data
             new_image = form.save(commit=False)
             new_image.user = request.user
-            
-            print (new_image.user)# Set the user field
             new_image.save()
             messages.success(request,
             'Image added successfully')
