@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+from django.db.models import Count
 from actions.utils import create_action
 from .models import Image
 # Create your views here.
@@ -63,7 +64,8 @@ def image_like(request):
     
 @login_required
 def image_list(request):
-    images = Image.objects.all()
+    images = Image.objects.annotate(
+            likes=Count('users_like')).order_by('-likes')
     paginator = Paginator(images,8)
     page = request.GET.get('page')
     images_only = request.GET.get( 'images_only' )
